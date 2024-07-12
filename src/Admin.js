@@ -16,9 +16,6 @@ const Admin = () => {
           <li>
             <Link to="/logout">ログアウト</Link>
           </li>
-          <li>
-            <Link to="/delete-account">アカウント削除</Link>
-          </li>
         </ul>
       </nav>
     </div>
