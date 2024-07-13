@@ -8,7 +8,7 @@ updates:
       day: "monday"
     commit-message:
       prefix: "deps"
-      include: true
+      include: "true"
     open-pull-requests-limit: 10
     assignees:
       - "IshikawaMasato"
