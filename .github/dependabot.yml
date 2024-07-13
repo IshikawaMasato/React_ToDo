@@ -1,0 +1,17 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      time: "08:00"
+      day: "monday"
+    commit-message:
+      prefix: "deps"
+      include: true
+    open-pull-requests-limit: 10
+    assignees:
+      - "IshikawaMasato"
+    labels:
+      - "dependencies"
+      - "automated"
