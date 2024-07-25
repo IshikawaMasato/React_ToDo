@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Admin = () => {
+const User = () => {
   return (
     <div>
       <h1>管理画面</h1>
@@ -22,4 +22,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default User;
