@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { db } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 
-const EditTodo = ({ id, currentTitle }) => {
+const EditTodo = ({ id, currentTitle, onEdit }) => {
   const [title, setTitle] = useState(currentTitle);
   const handleEdit = async (e) => {
     e.preventDefault();
@@ -12,6 +12,7 @@ const EditTodo = ({ id, currentTitle }) => {
         updated_at: new Date().toISOString(),
       });
       alert("Todo updated successfully");
+      onEdit();
     } catch (error) {
       alert(error.message);
     }

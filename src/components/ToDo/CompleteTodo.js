@@ -2,7 +2,7 @@ import React from "react";
 import { db } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
 
-const CompleteTodo = ({ id }) => {
+const CompleteTodo = ({ id, onComplete }) => {
   const handleComplete = async () => {
     try {
       await updateDoc(doc(db, "todos", id), {
@@ -10,6 +10,7 @@ const CompleteTodo = ({ id }) => {
         updated_at: new Date().toISOString(),
       });
       alert("Todo marked as completed");
+      onComplete();
     } catch (error) {
       alert(error.message);
     }
