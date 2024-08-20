@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import CompleteTodo from "./CompleteTodo";
+import DeleteTodo from "./DeleteTodo";
+import EditTodo from "./EditTodo";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
-    const fetchTodos = async () => {
-      const user = auth.currentUser;
-      if (user) {
-        const q = query(
-          collection(db, "todos"),
-          where("user_id", "==", user.uid)
-        );
-        const querySnapshot = await getDocs(q);
-        setTodos(
-          querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-        );
-      }
-    };
+  const fetchTodos = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const q = query(
+        collection(db, "todos"),
+        where("user_id", "==", user.uid)
+      );
+      const querySnapshot = await getDocs(q);
+      setTodos(
+        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
+    }
+  };
 
+  useEffect(() => {
     fetchTodos();
   }, []);
 
@@ -27,8 +30,20 @@ const TodoList = () => {
     <div>
       {todos.map((todo) => (
         <div key={todo.id}>
-          <h3>{todo.title}</h3>
-          <p>{todo.completed ? "Completed" : "Not Completed"}</p>
+          <h3>
+            {todo.title}
+            <EditTodo
+              id={todo.id}
+              currentTitle={todo.title}
+              onEdit={fetchTodos}
+            />
+          </h3>
+          <p>
+            {todo.completed ? "Completed" : "Not Completed"}
+            <CompleteTodo id={todo.id} onComplete={fetchTodos} />
+          </p>
+          <p>{todo.created_at}</p>
+          <DeleteTodo id={todo.id} onDelete={fetchTodos} />
         </div>
       ))}
     </div>
