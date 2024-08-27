@@ -13,7 +13,11 @@ const DeleteTodo = ({ id, onDelete }) => {
     }
   };
 
-  return <button onClick={handleDelete}>Delete</button>;
+  return (
+    <button className="button is-danger" onClick={handleDelete}>
+      Delete
+    </button>
+  );
 };
 
 export default DeleteTodo;

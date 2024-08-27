@@ -20,13 +20,22 @@ const EditTodo = ({ id, currentTitle, onEdit }) => {
 
   return (
     <form onSubmit={handleEdit}>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="New Todo Title"
-      />
-      <button type="submit">Update Todo</button>
+      <div className="field">
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="New Todo Title"
+          />
+        </div>
+      </div>
+      <div className="field">
+        <div className="control">
+          <button className="button is-primary" type="submit">Update Todo</button>
+        </div>
+      </div>
     </form>
   );
 };

@@ -27,13 +27,22 @@ const AddTodo = () => {
 
   return (
     <form onSubmit={handleAddTodo}>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Todo"
-      />
-      <button type="submit">Add Todo</button>
+      <div className="field has-addons">
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Todo"
+          />
+        </div>
+        <div className="control">
+          <button className="button is-primary" type="submit">
+            Add Todo
+          </button>
+        </div>
+      </div>
     </form>
   );
 };

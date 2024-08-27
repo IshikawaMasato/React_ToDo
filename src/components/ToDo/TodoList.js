@@ -29,8 +29,8 @@ const TodoList = () => {
   return (
     <div>
       {todos.map((todo) => (
-        <div key={todo.id}>
-          <h3>
+        <div key={todo.id} className="box">
+          <h3 className="title is-4">
             {todo.title}
             <EditTodo
               id={todo.id}

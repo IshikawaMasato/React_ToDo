@@ -16,7 +16,11 @@ const CompleteTodo = ({ id, onComplete }) => {
     }
   };
 
-  return <button onClick={handleComplete}>Complete</button>;
+  return (
+    <button className="button is-primary" onClick={handleComplete}>
+      Complete
+    </button>
+  );
 };
 
 export default CompleteTodo;

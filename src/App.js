@@ -7,6 +7,7 @@ import TodoRoutes from "./routes/TodoRoutes";
 import PrivateRoute from "./routes/PrivateRoute";
 import User from "./User";
 import "bulma/css/bulma.css";
+import Signup from "./components/Auth/Signup";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <AuthRoutes />
       <TodoRoutes />
       <PrivateRoute />
+      <Signup/>
     </Router>
   );
 }
