@@ -18,7 +18,7 @@ const CompleteTodo = ({ id, onComplete }) => {
 
   return (
     <button className="button is-primary" onClick={handleComplete}>
-      Complete
+      完了
     </button>
   );
 };

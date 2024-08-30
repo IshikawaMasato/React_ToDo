@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { db } from "../../firebase";
 import { doc, updateDoc } from "firebase/firestore";
+import { useCallback } from "react";
 
-const EditTodo = ({ id, currentTitle, onEdit }) => {
+const EditTodo = ({ id, currentTitle, onEdit, onCancel }) => {
   const [title, setTitle] = useState(currentTitle);
+
+  const reloadPage = useCallback(() => {
+    window.location.reload();
+  }, []);
+
   const handleEdit = async (e) => {
     e.preventDefault();
     try {
@@ -12,7 +18,8 @@ const EditTodo = ({ id, currentTitle, onEdit }) => {
         updated_at: new Date().toISOString(),
       });
       alert("Todo updated successfully");
-      onEdit();
+      onEdit(); // 編集後にTodoリストを再取得
+      reloadPage();
     } catch (error) {
       alert(error.message);
     }
@@ -33,7 +40,16 @@ const EditTodo = ({ id, currentTitle, onEdit }) => {
       </div>
       <div className="field">
         <div className="control">
-          <button className="button is-primary" type="submit">Update Todo</button>
+          <button className="button is-primary" type="submit">
+            更新
+          </button>
+          <button
+            className="button is-light"
+            type="button"
+            onClick={onCancel} // キャンセル時の処理
+          >
+            戻る
+          </button>
         </div>
       </div>
     </form>

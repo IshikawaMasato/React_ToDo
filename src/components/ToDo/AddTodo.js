@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { auth, db } from "../../firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { useCallback } from "react";
 
 const AddTodo = () => {
   const [title, setTitle] = useState("");
+  const reloadPage = useCallback(() => {
+    window.location.reload();
+  }, []);
 
   const handleAddTodo = async (e) => {
     e.preventDefault();
@@ -19,6 +23,7 @@ const AddTodo = () => {
         });
         setTitle("");
         alert("Todo added successfully");
+        reloadPage();
       }
     } catch (error) {
       alert(error.message);
@@ -39,7 +44,7 @@ const AddTodo = () => {
         </div>
         <div className="control">
           <button className="button is-primary" type="submit">
-            Add Todo
+            追加
           </button>
         </div>
       </div>

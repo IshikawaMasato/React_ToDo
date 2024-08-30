@@ -7,6 +7,7 @@ const DeleteTodo = ({ id, onDelete }) => {
     try {
       await deleteDoc(doc(db, "todos", id));
       alert("Todo deleted successfully");
+      console.log(onDelete);
       onDelete();
     } catch (error) {
       alert(error.message);
@@ -15,7 +16,7 @@ const DeleteTodo = ({ id, onDelete }) => {
 
   return (
     <button className="button is-danger" onClick={handleDelete}>
-      Delete
+      削除
     </button>
   );
 };
