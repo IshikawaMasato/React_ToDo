@@ -1,22 +1,29 @@
+// src/App.js
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import AuthRoutes from "./routes/AuthRoutes";
-import TodoRoutes from "./routes/TodoRoutes";
+import Logout from "./components/Auth/Logout";
+import TodoList from "./components/ToDo/TodoList";
 import PrivateRoute from "./routes/PrivateRoute";
-import User from "./User";
 import "bulma/css/bulma.css";
-import Signup from "./components/Auth/Signup";
 
 function App() {
   return (
     <Router>
-      <User />
-      <AuthRoutes />
-      <TodoRoutes />
-      <PrivateRoute />
-      <Signup/>
+      <Routes>
+        <Route path="/" element={<AuthRoutes />} />
+        <Route
+          path="/TodoList"
+          element={
+            <PrivateRoute>
+              <TodoList />
+              <Logout />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
     </Router>
   );
 }
