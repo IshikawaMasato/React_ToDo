@@ -4,7 +4,6 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import CompleteTodo from "./CompleteTodo";
 import DeleteTodo from "./DeleteTodo";
 import EditTodo from "./EditTodo";
-import AddTodo from "./AddTodo";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
@@ -38,9 +37,6 @@ const TodoList = () => {
 
   return (
     <div>
-      <div>
-        <AddTodo onAdd={fetchTodos} />
-      </div>
       {todos.map((todo) => (
         <div key={todo.id} className="box">
           {editingTodoId === todo.id ? (
