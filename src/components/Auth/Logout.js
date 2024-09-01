@@ -12,7 +12,11 @@ const Logout = () => {
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <button className="button is-danger" onClick={handleLogout}>
+      Logout
+    </button>
+  );
 };
 
 export default Logout;

@@ -1,15 +1,21 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
 import Signup from "../components/Auth/Signup";
 import Login from "../components/Auth/Login";
-import Logout from "../components/Auth/Logout";
 
-const AuthRoutes = () => (
-  <Routes>
-    <Route path="/signup" element={<Signup />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/logout" element={<Logout />} />
-  </Routes>
-);
+const AuthRoutes = () => {
+  return (
+    <div className="auth-container">
+      <div className="auth-form">
+        <h1>Login</h1>
+        <Login />
+      </div>
+      <div className="auth-form">
+        <h1>Sign Up</h1>
+        <Signup />
+      </div>
+    </div>
+  );
+};
+
 
 export default AuthRoutes;
