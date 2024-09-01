@@ -7,13 +7,18 @@ const DeleteTodo = ({ id, onDelete }) => {
     try {
       await deleteDoc(doc(db, "todos", id));
       alert("Todo deleted successfully");
+      console.log(onDelete);
       onDelete();
     } catch (error) {
       alert(error.message);
     }
   };
 
-  return <button onClick={handleDelete}>Delete</button>;
+  return (
+    <button className="button is-danger" onClick={handleDelete}>
+      削除
+    </button>
+  );
 };
 
 export default DeleteTodo;
