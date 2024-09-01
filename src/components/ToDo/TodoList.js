@@ -33,7 +33,7 @@ const TodoList = () => {
   };
 
   const handleEditCancel = () => {
-    setEditingTodoId(null); // 編集をキャンセルして元の状態に戻る
+    setEditingTodoId(null);
   };
 
   return (
@@ -46,9 +46,9 @@ const TodoList = () => {
           {editingTodoId === todo.id ? (
             <EditTodo
               id={todo.id}
-              currentTitle={todo.title}
+              currentTodo={todo}
               onEdit={fetchTodos}
-              onCancel={handleEditCancel} // キャンセルボタンの処理
+              onCancel={handleEditCancel}
             />
           ) : (
             <>
