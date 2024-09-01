@@ -62,10 +62,36 @@ const TodoList = () => {
                 </button>
               </h3>
               <div>
-                {todo.completed ? "Completed" : "Not Completed"}
-                <CompleteTodo id={todo.id} onComplete={fetchTodos} />
+                <strong>優先度:</strong> {todo.priority}
               </div>
-              <div>{todo.created_at}</div>
+              <div>
+                <strong>締め切り日:</strong> {todo.deadline}
+              </div>
+              <div>
+                <strong>リマインダー:</strong> {todo.reminder}
+              </div>
+              <div>
+                <strong>タグ:</strong> {todo.tags && todo.tags.join(", ")}
+              </div>
+              <div>
+                <strong>サブタスク:</strong>{" "}
+                {todo.subtasks && todo.subtasks.join(", ")}
+              </div>
+              <div>
+                <strong>共有相手:</strong>{" "}
+                {todo.sharedWith && todo.sharedWith.join(", ")}
+              </div>
+              <div>
+                <strong>ステータス:</strong>{" "}
+                {todo.completed ? "完了" : "未完了"}
+              </div>
+              <div>
+                <strong>作成日:</strong> {todo.created_at}
+              </div>
+              <div>
+                <strong>更新日:</strong> {todo.updated_at}
+              </div>
+              <CompleteTodo id={todo.id} onComplete={fetchTodos} />
               <DeleteTodo id={todo.id} onDelete={fetchTodos} />
             </>
           )}
