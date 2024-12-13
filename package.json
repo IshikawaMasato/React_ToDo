@@ -7,7 +7,7 @@
     "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
     "bulma": "^1.0.2",
-    "firebase": "^11.0.2",
+    "firebase": "^11.1.0",
     "ldrs": "^1.0.2",
     "react": "^19.0.0",
     "react-dom": "^18.3.1",
