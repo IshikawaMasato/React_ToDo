@@ -10,6 +10,20 @@ const PrivateRoute = ({ children }) => {
     return <div>Loading...</div>;
   }
 
+  // Allow a local dev fallback: if "fakeAuth" is set in localStorage,
+  // treat the user as authenticated. This lets the Login button
+  // navigate to protected routes even if Firebase is unavailable.
+  let isFake = false;
+  try {
+    isFake =
+      typeof window !== "undefined" &&
+      localStorage.getItem("fakeAuth") === "true";
+  } catch (err) {
+    isFake = false;
+  }
+
+  if (isFake) return children;
+
   return user ? children : <Navigate to="/" />;
 };
 

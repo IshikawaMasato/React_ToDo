@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { auth, db } from "../../firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import todoStorage from "../../utils/todoStorage";
 import CompleteTodo from "./CompleteTodo";
 import DeleteTodo from "./DeleteTodo";
 import EditTodo from "./EditTodo";
@@ -10,17 +9,9 @@ const TodoList = () => {
   const [editingTodoId, setEditingTodoId] = useState(null);
 
   const fetchTodos = async () => {
-    const user = auth.currentUser;
-    if (user) {
-      const q = query(
-        collection(db, "todos"),
-        where("user_id", "==", user.uid)
-      );
-      const querySnapshot = await getDocs(q);
-      setTodos(
-        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      );
-    }
+    // Use local storage fallback for todos
+    const items = await todoStorage.getAllTodos();
+    setTodos(items || []);
   };
 
   useEffect(() => {

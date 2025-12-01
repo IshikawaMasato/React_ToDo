@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { auth, db } from "../../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import todoStorage from "../../utils/todoStorage";
 import "bulma/css/bulma.css";
 
 const AddTodo = () => {
@@ -34,31 +33,25 @@ const AddTodo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = auth.currentUser;
-      if (user) {
-        await addDoc(collection(db, "todos"), {
-          user_id: user.uid,
-          title: title,
-          priority: priority,
-          deadline: deadline,
-          reminder: reminder,
-          tags: selectedTags.filter((tag) => tag !== ""),
-          subtasks: subtasks.filter((task) => task !== ""),
-          sharedWith: sharedWith.filter((email) => email !== ""),
-          completed: false,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
-        setTitle("");
-        setPriority("medium");
-        setDeadline("");
-        setReminder("");
-        setSelectedTags([""]);
-        setSubtasks([""]);
-        setSharedWith([""]);
-        alert("Todo added successfully");
-        reloadPage();
-      }
+      await todoStorage.addTodo({
+        title: title,
+        priority: priority,
+        deadline: deadline,
+        reminder: reminder,
+        tags: selectedTags.filter((tag) => tag !== ""),
+        subtasks: subtasks.filter((task) => task !== ""),
+        sharedWith: sharedWith.filter((email) => email !== ""),
+        completed: false,
+      });
+      setTitle("");
+      setPriority("medium");
+      setDeadline("");
+      setReminder("");
+      setSelectedTags([""]);
+      setSubtasks([""]);
+      setSharedWith([""]);
+      alert("Todo added successfully");
+      reloadPage();
     } catch (error) {
       alert(error.message);
     }

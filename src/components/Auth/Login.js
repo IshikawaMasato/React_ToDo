@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { auth } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import "bulma/css/bulma.css";
 
@@ -11,13 +9,15 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    // Firebase account removed — use a local dev fallback to allow navigation.
+    // This sets a simple flag in localStorage that PrivateRoute will accept.
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      alert("User logged in successfully");
-      navigate("/TodoList");
-    } catch (error) {
-      alert(error.message);
+      localStorage.setItem("fakeAuth", "true");
+    } catch (err) {
+      // ignore localStorage errors in some environments
     }
+    alert("Logged in (dev fallback)");
+    navigate("/TodoList");
   };
 
   return (

@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { db } from "../../firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import todoStorage from "../../utils/todoStorage";
 import "bulma/css/bulma.css";
 
 const EditTodo = ({ id, currentTodo, onEdit, onCancel }) => {
@@ -34,7 +33,7 @@ const EditTodo = ({ id, currentTodo, onEdit, onCancel }) => {
   const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      await updateDoc(doc(db, "todos", id), {
+      await todoStorage.updateTodo(id, {
         title,
         priority,
         deadline,
@@ -42,7 +41,6 @@ const EditTodo = ({ id, currentTodo, onEdit, onCancel }) => {
         tags: selectedTags.filter((tag) => tag !== ""),
         subtasks: subtasks.filter((task) => task !== ""),
         sharedWith: sharedWith.filter((email) => email !== ""),
-        updated_at: new Date().toISOString(),
       });
       alert("Todo updated successfully");
       onEdit();
