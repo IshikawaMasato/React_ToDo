@@ -10,7 +10,7 @@
     "firebase": "^12.5.0",
     "ldrs": "^1.1.9",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react-dom": "^19.2.1",
     "react-firebase-hooks": "^5.1.1",
     "react-loader-spinner": "^8.0.0",
     "react-router-dom": "^7.9.5",
